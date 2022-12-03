@@ -1,0 +1,83 @@
+fragment ArticleAuthor on Article {
+    author {
+        data {
+            attributes {
+                name
+            }
+        }
+    }
+}
+
+fragment ArticleCategory on Article {
+    category {
+        data {
+            attributes {
+                name
+            }
+        }
+    }
+}
+
+fragment ArticleBlocks on Article {
+    blocks {
+        __typename
+        ... on ComponentSharedRichText {
+            id
+            body
+        }
+        ... on ComponentSharedMedia {
+            id
+            file {
+                ...ImageField
+            }
+        }
+        ... on ComponentSharedCodeBlock {
+            id
+            lang
+            content
+        }
+        ... on Error {
+            code
+            message
+        }
+    }
+}
+
+query articleList($page: Int) {
+    articles(pagination: { page: $page, pageSize: 10 }) {
+        data {
+            id
+            attributes {
+                slug
+                title
+                description
+                createdAt
+            }
+        }
+    }
+}
+
+query articleSlugList {
+    articles(pagination: { pageSize: 1000 }) {
+        data {
+            attributes {
+                slug
+            }
+        }
+    }
+}
+
+query articleDetails($slug: String!) {
+    article(slug: $slug) {
+        data {
+            id
+            attributes {
+                slug
+                title
+                ...ArticleAuthor
+                ...ArticleBlocks
+                ...ArticleCategory
+            }
+        }
+    }
+}

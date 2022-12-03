@@ -1,0 +1,21 @@
+query globalDetails {
+    global {
+        data {
+            attributes {
+                siteName
+                siteDescription
+                favicon {
+                    ...ImageField
+                }
+                defaultSeo {
+                    id
+                    metaTitle
+                    metaDescription
+                    shareImage {
+                        ...ImageField
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "blog-strapi-next",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "install:root": "yarn install",
+    "install:frontend": "yarn --cwd frontend install",
+    "install:backend": "yarn --cwd backend install",
+    "installAll": "cross-env FORCE_COLOR=1 npm-run-all -l -p install:*",
+    "develop:backend": "yarn --cwd backend develop",
+    "develop:frontend": "wait-on http://localhost:1337/admin && yarn --cwd frontend develop",
+    "develop": "cross-env FORCE_COLOR=1 npm-run-all -l -p develop:*",
+    "export": "yarn --cwd frontend buildExport"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "wait-on": "^6.0.1"
+  }
+}

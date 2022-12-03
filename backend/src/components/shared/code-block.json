@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_code_blocks",
+  "info": {
+    "displayName": "Code block",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "lang": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,12 @@
+fragment ImageField on UploadFileEntityResponse {
+    data {
+        attributes {
+            url
+            hash
+            mime
+            name
+            provider
+            size
+        }
+    }
+}

@@ -1,0 +1,10 @@
+query headerDetails {
+    header {
+        data {
+            attributes {
+                title
+                subtitle
+            }
+        }
+    }
+}
