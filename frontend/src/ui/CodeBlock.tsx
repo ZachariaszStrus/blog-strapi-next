@@ -2,7 +2,7 @@ import React from "react";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import python from "react-syntax-highlighter/dist/cjs/languages/prism/python";
 import dax from "react-syntax-highlighter/dist/cjs/languages/prism/dax";
-import { dracula } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import dracula from "react-syntax-highlighter/dist/cjs/styles/prism/dracula";
 import ReactMarkdown from "react-markdown";
 import { ComponentSharedCodeBlock } from "@api";
 

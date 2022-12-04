@@ -1,9 +1,9 @@
 import App, { AppProps } from "next/app";
 import Head from "next/head";
-import { api, Global, Header } from "api";
+import { api, Global, Header } from "@api";
+import { MainTemplate } from "@ui";
 
 import "../styles/globals.css";
-import { MainTemplate } from "ui";
 
 interface PageProps {
   global?: Global | null;

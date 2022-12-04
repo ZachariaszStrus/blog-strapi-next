@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import { Header } from "api";
+import { Header } from "@api";
 import SmallScreenNav from "./SmallScreenNav";
 import BigScreenNav from "./BigScreenNav";
 

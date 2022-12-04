@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "ui";
+import { Link } from "@ui";
 
 export const Navbar = () => {
   return (

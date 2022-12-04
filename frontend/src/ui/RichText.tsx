@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ComponentSharedRichText } from "api";
+import { ComponentSharedRichText } from "@api";
 import ReactMarkdown from "react-markdown";
 
 interface RichTextProps extends Pick<ComponentSharedRichText, "body"> {}

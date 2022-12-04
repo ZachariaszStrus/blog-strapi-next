@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { ComponentSharedMedia } from "api";
+import { ComponentSharedMedia } from "@api";
 
 interface MediaProps extends Pick<ComponentSharedMedia, "file"> {}
 //TODO

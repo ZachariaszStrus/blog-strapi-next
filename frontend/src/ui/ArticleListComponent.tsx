@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC } from "react";
-import { Article } from "api";
+import { Article } from "@api";
 import { Link } from "./Link";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
