@@ -44,7 +44,7 @@ fragment ArticleBlocks on Article {
 }
 
 query articleList($page: Int) {
-    articles(pagination: { page: $page, pageSize: 10 }) {
+    articles(pagination: { page: $page, pageSize: 10 }, sort: "createdAt:desc") {
         data {
             id
             attributes {
@@ -52,6 +52,12 @@ query articleList($page: Int) {
                 title
                 description
                 createdAt
+            }
+        }
+        meta {
+            pagination {
+                page
+                pageCount
             }
         }
     }

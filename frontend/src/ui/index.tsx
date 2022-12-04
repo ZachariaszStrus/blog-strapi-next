@@ -5,3 +5,4 @@ export * from "./MainTemplate";
 export * from "./ArticleContentComponent";
 export * from "./Link";
 export * from "./Text";
+export * from "./ArticleList";
