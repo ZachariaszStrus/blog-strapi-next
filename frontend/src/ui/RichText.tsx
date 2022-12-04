@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { ComponentSharedRichText } from "@api";
-import ReactMarkdown from "react-markdown";
+import Markdown from "markdown-to-jsx";
 
 interface RichTextProps extends Pick<ComponentSharedRichText, "body"> {}
 
 const RichText: FC<RichTextProps> = ({ body }) => {
-  return <ReactMarkdown className="prose prose-invert">{body}</ReactMarkdown>;
+  return <Markdown className="prose prose-invert">{body}</Markdown>;
 };
 
 export default RichText;
