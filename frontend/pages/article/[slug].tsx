@@ -48,7 +48,6 @@ export const getStaticProps: GetStaticProps<
 };
 
 const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
-  console.log("article", article);
   return (
     <>
       <Head>
