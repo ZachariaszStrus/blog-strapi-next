@@ -20,17 +20,8 @@ fragment ArticleCategory on Article {
 
 fragment ArticleBlocks on Article {
     blocks {
-        __typename
-        ... on ComponentSharedRichText {
-            id
-            body
-        }
-        ... on ComponentSharedMedia {
-            id
-            file {
-                ...ImageField
-            }
-        }
+        ...ComponentSharedRichTextBlock
+        ...ComponentSharedMediaBlock
         ... on ComponentSharedCodeBlock {
             id
             lang

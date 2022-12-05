@@ -1312,6 +1312,11 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
+export type AboutDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutDetailsQuery = { __typename?: 'Query', about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', attributes?: { __typename?: 'About', title?: string | null, blocks?: Array<{ __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', message?: string | null, code: string } | null> | null } | null } | null } | null };
+
 export type ArticleAuthorFragment = { __typename?: 'Article', author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string } | null } | null } | null };
 
 export type ArticleCategoryFragment = { __typename?: 'Article', category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null } | null } | null };
@@ -1349,6 +1354,26 @@ export type HeaderDetailsQuery = { __typename?: 'Query', header?: { __typename?:
 
 export type ImageFieldFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null };
 
+type ComponentSharedRichTextBlock_ComponentSharedCodeBlock_Fragment = { __typename: 'ComponentSharedCodeBlock' };
+
+type ComponentSharedRichTextBlock_ComponentSharedMedia_Fragment = { __typename: 'ComponentSharedMedia' };
+
+type ComponentSharedRichTextBlock_ComponentSharedRichText_Fragment = { __typename: 'ComponentSharedRichText', id: string, body: string };
+
+type ComponentSharedRichTextBlock_Error_Fragment = { __typename: 'Error' };
+
+export type ComponentSharedRichTextBlockFragment = ComponentSharedRichTextBlock_ComponentSharedCodeBlock_Fragment | ComponentSharedRichTextBlock_ComponentSharedMedia_Fragment | ComponentSharedRichTextBlock_ComponentSharedRichText_Fragment | ComponentSharedRichTextBlock_Error_Fragment;
+
+type ComponentSharedMediaBlock_ComponentSharedCodeBlock_Fragment = { __typename: 'ComponentSharedCodeBlock' };
+
+type ComponentSharedMediaBlock_ComponentSharedMedia_Fragment = { __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } };
+
+type ComponentSharedMediaBlock_ComponentSharedRichText_Fragment = { __typename: 'ComponentSharedRichText' };
+
+type ComponentSharedMediaBlock_Error_Fragment = { __typename: 'Error' };
+
+export type ComponentSharedMediaBlockFragment = ComponentSharedMediaBlock_ComponentSharedCodeBlock_Fragment | ComponentSharedMediaBlock_ComponentSharedMedia_Fragment | ComponentSharedMediaBlock_ComponentSharedRichText_Fragment | ComponentSharedMediaBlock_Error_Fragment;
+
 export const ArticleAuthorFragmentDoc = gql`
     fragment ArticleAuthor on Article {
   author {
@@ -1371,6 +1396,15 @@ export const ArticleCategoryFragmentDoc = gql`
   }
 }
     `;
+export const ComponentSharedRichTextBlockFragmentDoc = gql`
+    fragment ComponentSharedRichTextBlock on ArticleBlocksDynamicZone {
+  __typename
+  ... on ComponentSharedRichText {
+    id
+    body
+  }
+}
+    `;
 export const ImageFieldFragmentDoc = gql`
     fragment ImageField on UploadFileEntityResponse {
   data {
@@ -1385,20 +1419,22 @@ export const ImageFieldFragmentDoc = gql`
   }
 }
     `;
+export const ComponentSharedMediaBlockFragmentDoc = gql`
+    fragment ComponentSharedMediaBlock on ArticleBlocksDynamicZone {
+  __typename
+  ... on ComponentSharedMedia {
+    id
+    file {
+      ...ImageField
+    }
+  }
+}
+    ${ImageFieldFragmentDoc}`;
 export const ArticleBlocksFragmentDoc = gql`
     fragment ArticleBlocks on Article {
   blocks {
-    __typename
-    ... on ComponentSharedRichText {
-      id
-      body
-    }
-    ... on ComponentSharedMedia {
-      id
-      file {
-        ...ImageField
-      }
-    }
+    ...ComponentSharedRichTextBlock
+    ...ComponentSharedMediaBlock
     ... on ComponentSharedCodeBlock {
       id
       lang
@@ -1410,7 +1446,28 @@ export const ArticleBlocksFragmentDoc = gql`
     }
   }
 }
-    ${ImageFieldFragmentDoc}`;
+    ${ComponentSharedRichTextBlockFragmentDoc}
+${ComponentSharedMediaBlockFragmentDoc}`;
+export const AboutDetailsDocument = gql`
+    query aboutDetails {
+  about {
+    data {
+      attributes {
+        title
+        blocks {
+          ...ComponentSharedRichTextBlock
+          ...ComponentSharedMediaBlock
+          ... on Error {
+            message
+            code
+          }
+        }
+      }
+    }
+  }
+}
+    ${ComponentSharedRichTextBlockFragmentDoc}
+${ComponentSharedMediaBlockFragmentDoc}`;
 export const ArticleListDocument = gql`
     query articleList($page: Int) {
   articles(pagination: {page: $page, pageSize: 10}, sort: "createdAt:desc") {
@@ -1504,6 +1561,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    aboutDetails(variables?: AboutDetailsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<AboutDetailsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<AboutDetailsQuery>(AboutDetailsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'aboutDetails', 'query');
+    },
     articleList(variables?: ArticleListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<ArticleListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<ArticleListQuery>(ArticleListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'articleList', 'query');
     },
