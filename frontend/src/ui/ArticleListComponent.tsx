@@ -5,6 +5,7 @@ import { Link } from "./Link";
 import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 import { Text } from "./Text";
+import { routes } from "@utils";
 
 interface ArticleListProps
   extends Pick<Article, "title" | "slug" | "description" | "createdAt"> {}
@@ -24,7 +25,7 @@ export const ArticleListComponent: FC<ArticleListProps> = ({
       <Text c faded>
         {format(parseISO(createdAt), "PPP")}
       </Text>
-      <Link href={`/article/${slug}`}>read more</Link>
+      <Link href={routes.articleDetails(slug)}>read more</Link>
     </div>
   </div>
 );

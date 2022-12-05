@@ -1,16 +1,17 @@
-import { ArticleListComponent, MainTemplate } from "@ui";
-import { ArticleEntity, api } from "@api";
+import { ArticleList } from "@ui";
+import { api, ArticleEntity } from "@api";
 import { GetStaticProps } from "next/types";
 import { FC } from "react";
 
 interface HomeProps {
   articles: ArticleEntity[];
+  pageCount: number;
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const response = await api.articleList();
+  const response = await api.articleList({ page: 1 });
 
-  if (!response.articles?.data) {
+  if (!response.articles?.data || !response.articles?.meta) {
     return {
       notFound: true,
     };
@@ -18,27 +19,13 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
   return {
     props: {
-      articles: response.articles?.data,
+      articles: response.articles.data,
+      ...response.articles.meta.pagination,
     },
   };
 };
 
-const Home: FC<HomeProps> = ({ articles }) => {
-  return (
-    <div className="flex flex-col flex-1 gap-4">
-      {articles?.map(
-        (article) =>
-          article.attributes && (
-            <ArticleListComponent
-              key={article.id}
-              title={article.attributes.title}
-              createdAt={article.attributes.createdAt}
-              description={article.attributes.description}
-              slug={article.attributes.slug}
-            />
-          )
-      )}
-    </div>
-  );
+const HomePage: FC<HomeProps> = ({ articles, pageCount }) => {
+  return <ArticleList articles={articles} page={1} pageCount={pageCount} />;
 };
-export default Home;
+export default HomePage;
