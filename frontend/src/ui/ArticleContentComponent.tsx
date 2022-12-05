@@ -30,8 +30,8 @@ export const ArticleContentComponent: FC<ArticleContentProps> = ({
   }, []);
 
   return (
-    <div className="flex flex-col  py-5 space-y-4 bg-background-dark lg:p-5 rounded-lg">
-      <div className={"text-2xl"}>{title}</div>
+    <div className="flex flex-1 flex-col p-4 lg:p-6 space-y-4 bg-gradient-to-b from-background-dark rounded-lg">
+      <Text h2>{title}</Text>
       <Text c faded className={"pb-3"}>
         {format(parseISO(createdAt), "PPP")}
       </Text>
