@@ -35,7 +35,7 @@ type Article {
     createdAt: DateTime
     description: String!
     publishedAt: DateTime
-    slug: String
+    slug: String!
     title: String!
     updatedAt: DateTime
 }
