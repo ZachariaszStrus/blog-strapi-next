@@ -42,7 +42,7 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
           {page}
           <span>
             {" / "}
-            {page}
+            {pageCount}
           </span>
         </Text>
         {nextPage ? (
