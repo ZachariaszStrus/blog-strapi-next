@@ -13,9 +13,17 @@ interface CodeBlockProps
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ lang, content }) => {
   return (
-    <SyntaxHighlighter language={lang || "dax"} style={dracula}>
-      {content}
-    </SyntaxHighlighter>
+    <div className="rounded-xl mx-auto bg-gradient-to-r  p-[2px] from-secondary-200 via-primary-300 to-primary-600">
+      <div className={"bg-[#282a36] px-2 py-[1px] rounded-xl"}>
+        <SyntaxHighlighter
+          language={lang || "dax"}
+          style={dracula}
+          wrapLongLines
+        >
+          {content}
+        </SyntaxHighlighter>
+      </div>
+    </div>
   );
 };
 

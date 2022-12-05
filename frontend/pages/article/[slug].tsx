@@ -48,6 +48,7 @@ export const getStaticProps: GetStaticProps<
 };
 
 const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
+  console.log("article", article);
   return (
     <>
       <Head>
@@ -57,6 +58,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
         <ArticleContentComponent
           title={article.title}
           blocks={article.blocks}
+          createdAt={article.createdAt}
         />
       )}
     </>

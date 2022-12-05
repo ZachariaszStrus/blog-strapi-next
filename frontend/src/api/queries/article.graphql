@@ -74,6 +74,7 @@ query articleDetails($slug: String!) {
             attributes {
                 slug
                 title
+                createdAt
                 ...ArticleAuthor
                 ...ArticleBlocks
                 ...ArticleCategory
