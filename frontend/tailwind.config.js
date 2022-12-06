@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "background-dark": "#0d1117",
+        "background-dracula": "#282a36",
         "fg-default": "#fff",
         "fg-faded": "#9ca3af",
         primary: {
@@ -34,7 +35,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
