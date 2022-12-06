@@ -1,7 +1,7 @@
 import React from "react";
 import { api } from "@api";
 import { InferGetStaticPropsType } from "next";
-import { Text } from "@ui";
+import { ContentComponent } from "@ui";
 
 export const getStaticProps = async () => {
   const response = await api.aboutDetails();
@@ -18,12 +18,7 @@ export const getStaticProps = async () => {
 const About = ({
   aboutData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  console.log("aboutData", aboutData);
-  return (
-    <div>
-      <Text h3>{aboutData.title}</Text>
-    </div>
-  );
+  return <ContentComponent title={aboutData.title} blocks={aboutData.blocks} />;
 };
 
 export default About;

@@ -29,7 +29,7 @@ export type About = {
   blocks?: Maybe<Array<Maybe<AboutBlocksDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -1315,7 +1315,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type AboutDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutDetailsQuery = { __typename?: 'Query', about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', attributes?: { __typename?: 'About', title?: string | null, blocks?: Array<{ __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', message?: string | null, code: string } | null> | null } | null } | null } | null };
+export type AboutDetailsQuery = { __typename?: 'Query', about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', attributes?: { __typename?: 'About', title: string, blocks?: Array<{ __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', message?: string | null, code: string } | null> | null } | null } | null } | null };
 
 export type ArticleAuthorFragment = { __typename?: 'Article', author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string } | null } | null } | null };
 

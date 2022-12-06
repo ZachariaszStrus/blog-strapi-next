@@ -1,5 +1,5 @@
 import { api } from "@api";
-import { ArticleContentComponent, ArticleContentProps } from "@ui";
+import { ContentComponent, ArticleContentProps } from "@ui";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import { ParsedUrlQuery } from "querystring";
@@ -54,7 +54,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
         <title>{article.title}</title>
       </Head>
       {article && (
-        <ArticleContentComponent
+        <ContentComponent
           title={article.title}
           blocks={article.blocks}
           createdAt={article.createdAt}

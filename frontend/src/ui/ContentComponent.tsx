@@ -8,10 +8,10 @@ import format from "date-fns/format";
 import parseISO from "date-fns/parseISO";
 import * as React from "react";
 
-export interface ArticleContentProps
+export interface ContentComponentProps
   extends Pick<Article, "title" | "blocks" | "createdAt"> {}
 
-export const ArticleContentComponent: FC<ArticleContentProps> = ({
+export const ContentComponent: FC<ContentComponentProps> = ({
   title,
   blocks,
   createdAt,
@@ -32,9 +32,11 @@ export const ArticleContentComponent: FC<ArticleContentProps> = ({
   return (
     <div className="flex flex-1 flex-col p-4 lg:p-6 space-y-4 bg-gradient-to-b from-background-dark rounded-lg">
       <Text h2>{title}</Text>
-      <Text c faded className={"pb-3"}>
-        {format(parseISO(createdAt), "PPP")}
-      </Text>
+      {createdAt && (
+        <Text c faded className={"pb-3"}>
+          {format(parseISO(createdAt), "PPP")}
+        </Text>
+      )}
       {blocks?.map((block, index) => {
         return <div key={index}>{renderBlock(block)}</div>;
       })}
