@@ -57,6 +57,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
         <ArticleContentComponent
           title={article.title}
           blocks={article.blocks}
+          createdAt={article.createdAt}
         />
       )}
     </>

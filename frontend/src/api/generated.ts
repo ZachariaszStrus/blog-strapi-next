@@ -1340,7 +1340,7 @@ export type ArticleDetailsQueryVariables = Exact<{
 }>;
 
 
-export type ArticleDetailsQuery = { __typename?: 'Query', article?: { __typename?: 'ArticleEntityResponse', data?: { __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string, title: string, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string } | null } | null } | null, blocks?: Array<{ __typename: 'ComponentSharedCodeBlock', id: string, lang: string, content: string } | { __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', code: string, message?: string | null } | null> | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null } | null } | null } | null } | null } | null };
+export type ArticleDetailsQuery = { __typename?: 'Query', article?: { __typename?: 'ArticleEntityResponse', data?: { __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', slug: string, title: string, createdAt?: any | null, author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string } | null } | null } | null, blocks?: Array<{ __typename: 'ComponentSharedCodeBlock', id: string, lang: string, content: string } | { __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', code: string, message?: string | null } | null> | null, category?: { __typename?: 'CategoryEntityResponse', data?: { __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', name: string } | null } | null } | null } | null } | null } | null };
 
 export type GlobalDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1508,6 +1508,7 @@ export const ArticleDetailsDocument = gql`
       attributes {
         slug
         title
+        createdAt
         ...ArticleAuthor
         ...ArticleBlocks
         ...ArticleCategory

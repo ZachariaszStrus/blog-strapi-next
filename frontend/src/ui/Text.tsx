@@ -6,7 +6,7 @@ const textClasses = cva("text-base font-light text-fg-default", {
   variants: {
     // main variants
     h1: {
-      true: "text-6xl font-bold",
+      true: "text-4xl md:text-6xl font-bold",
     },
     h2: {
       true: "text-4xl font-semibold",
