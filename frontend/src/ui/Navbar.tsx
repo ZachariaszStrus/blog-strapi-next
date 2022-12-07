@@ -12,7 +12,6 @@ export const Navbar: FC<NavbarProps> = ({ isAboutInfoAvailable }) => {
     <div className="flex flex-col gap-4 items-start">
       <Link href={routes.home()}>home</Link>
       {isAboutInfoAvailable && <Link href={routes.about()}>about</Link>}
-      <Link href="/">contact</Link>
     </div>
   );
 };
