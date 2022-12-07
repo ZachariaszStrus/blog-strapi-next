@@ -8,4 +8,6 @@ export * from "./MediaBlock";
 export * from "./CodeBlock";
 export * from "./RichText";
 export * from "./ArticleList";
-export * from "./ContentComponent";
+export * from "./ContentWrapper";
+export * from "./ArticleDetailsComponent";
+export * from "./AboutComponent";
