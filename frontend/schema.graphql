@@ -15,7 +15,7 @@ type About {
     blocks: [AboutBlocksDynamicZone]
     createdAt: DateTime
     publishedAt: DateTime
-    title: String
+    title: String!
     updatedAt: DateTime
 }
 

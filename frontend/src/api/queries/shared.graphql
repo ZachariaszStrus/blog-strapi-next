@@ -10,3 +10,21 @@ fragment ImageField on UploadFileEntityResponse {
         }
     }
 }
+
+fragment ComponentSharedRichTextBlock on ArticleBlocksDynamicZone {
+    __typename
+    ... on ComponentSharedRichText {
+        id
+        body
+    }
+}
+
+fragment ComponentSharedMediaBlock on ArticleBlocksDynamicZone {
+    __typename
+    ... on ComponentSharedMedia {
+        id
+        file {
+            ...ImageField
+        }
+    }
+}

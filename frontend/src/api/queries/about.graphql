@@ -1,0 +1,17 @@
+query aboutDetails {
+    about {
+        data {
+            attributes {
+                title
+                blocks {
+                    ...ComponentSharedRichTextBlock
+                    ...ComponentSharedMediaBlock
+                    ... on Error {
+                        message,
+                        code,
+                    }
+                }
+            }
+        }
+    }
+}

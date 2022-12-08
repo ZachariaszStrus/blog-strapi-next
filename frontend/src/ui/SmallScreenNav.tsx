@@ -9,9 +9,13 @@ import { useRouter } from "next/router";
 
 interface SmallScreenNavProps {
   header?: Header | null;
+  isAboutInfoAvailable: boolean;
 }
 
-const SmallScreenNav = ({ header }: SmallScreenNavProps) => {
+const SmallScreenNav = ({
+  header,
+  isAboutInfoAvailable,
+}: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const router = useRouter();
   router.events?.on("routeChangeComplete", () => setIsNavOpen(false));
@@ -48,7 +52,7 @@ const SmallScreenNav = ({ header }: SmallScreenNavProps) => {
             enterTo="opacity-100"
           >
             <div className={"mt-10 ml-4"}>
-              <Navbar />
+              <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
             </div>
           </Transition>
         </div>

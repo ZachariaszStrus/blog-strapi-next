@@ -5,13 +5,14 @@ import { Navbar } from "./Navbar";
 
 interface BigScreenNavProps {
   header?: Header | null;
+  isAboutInfoAvailable: boolean;
 }
 
-const BigScreenNav = ({ header }: BigScreenNavProps) => {
+const BigScreenNav = ({ header, isAboutInfoAvailable }: BigScreenNavProps) => {
   return (
     <div className="flex flex-col">
       <div className="mb-8">{header && <BlogTitle header={header} />}</div>
-      <Navbar />
+      <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
     </div>
   );
 };
