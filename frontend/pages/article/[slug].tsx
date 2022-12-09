@@ -2,7 +2,7 @@ import { api } from "@api";
 import {
   ArticleDetailsComponent,
   ArticleDetailsComponentProps,
-  BlogComments,
+  CommentsGiscus,
 } from "@ui";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
@@ -66,7 +66,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
           />
         )}
         <div className="mt-8">
-          <BlogComments />
+          <CommentsGiscus />
         </div>
       </div>
     </>
