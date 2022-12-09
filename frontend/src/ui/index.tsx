@@ -11,3 +11,4 @@ export * from "./ArticleList";
 export * from "./ContentWrapper";
 export * from "./ArticleDetailsComponent";
 export * from "./AboutComponent";
+export * from "./BlogComments";

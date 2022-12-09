@@ -1,5 +1,9 @@
 import { api } from "@api";
-import { ArticleDetailsComponent, ArticleDetailsComponentProps } from "@ui";
+import {
+  ArticleDetailsComponent,
+  ArticleDetailsComponentProps,
+  BlogComments,
+} from "@ui";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { FC } from "react";
 import { ParsedUrlQuery } from "querystring";
@@ -53,13 +57,18 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
       <Head>
         <title>{article.title}</title>
       </Head>
-      {article && (
-        <ArticleDetailsComponent
-          title={article.title}
-          blocks={article.blocks}
-          createdAt={article.createdAt}
-        />
-      )}
+      <div className="flex flex-col w-full">
+        {article && (
+          <ArticleDetailsComponent
+            title={article.title}
+            blocks={article.blocks}
+            createdAt={article.createdAt}
+          />
+        )}
+        <div className="mt-8">
+          <BlogComments />
+        </div>
+      </div>
     </>
   );
 };
