@@ -40,7 +40,7 @@ const SmallScreenNav = ({
         <div
           className={
             isNavOpen
-              ? "absolute w-full h-screen top-0 left-0  bg-background-dark p-8"
+              ? "absolute w-full h-screen top-0 left-0  bg-background-dark p-8 z-50"
               : "hidden"
           }
         >
