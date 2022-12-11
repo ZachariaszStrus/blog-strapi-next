@@ -38,12 +38,12 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
         ) : (
           <div className="w-6 h-6" />
         )}
-        <Text p>
+        <Text pb>
           {page}
-          <span>
+          <Text p faded span>
             {" / "}
             {pageCount}
-          </span>
+          </Text>
         </Text>
         {nextPage ? (
           <Link href={routes.articleList(nextPage)}>
