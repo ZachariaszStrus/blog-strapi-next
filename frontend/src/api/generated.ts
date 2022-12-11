@@ -785,6 +785,7 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  search?: Maybe<SearchResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -863,6 +864,12 @@ export type QueryI18NLocalesArgs = {
 };
 
 
+export type QuerySearchArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  query: Scalars['String'];
+};
+
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -913,6 +920,11 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type SearchResponse = {
+  __typename?: 'SearchResponse';
+  articles?: Maybe<ArticleEntityResponseCollection>;
 };
 
 export type StringFilterInput = {
@@ -1352,6 +1364,13 @@ export type HeaderDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HeaderDetailsQuery = { __typename?: 'Query', header?: { __typename?: 'HeaderEntityResponse', data?: { __typename?: 'HeaderEntity', attributes?: { __typename?: 'Header', title: string, subtitle?: string | null } | null } | null } | null };
 
+export type SearchArticlesQueryVariables = Exact<{
+  searchedWord: Scalars['String'];
+}>;
+
+
+export type SearchArticlesQuery = { __typename?: 'Query', search?: { __typename?: 'SearchResponse', articles?: { __typename?: 'ArticleEntityResponseCollection', data: Array<{ __typename?: 'ArticleEntity', id?: string | null, attributes?: { __typename?: 'Article', title: string, slug: string, description: string } | null }> } | null } | null };
+
 export type ImageFieldFragment = { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null };
 
 type ComponentSharedRichTextBlock_ComponentSharedCodeBlock_Fragment = { __typename: 'ComponentSharedCodeBlock' };
@@ -1554,6 +1573,22 @@ export const HeaderDetailsDocument = gql`
   }
 }
     `;
+export const SearchArticlesDocument = gql`
+    query searchArticles($searchedWord: String!) {
+  search(query: $searchedWord) {
+    articles {
+      data {
+        id
+        attributes {
+          title
+          slug
+          description
+        }
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -1579,6 +1614,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     headerDetails(variables?: HeaderDetailsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HeaderDetailsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HeaderDetailsQuery>(HeaderDetailsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'headerDetails', 'query');
+    },
+    searchArticles(variables: SearchArticlesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SearchArticlesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SearchArticlesQuery>(SearchArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchArticles', 'query');
     }
   };
 }

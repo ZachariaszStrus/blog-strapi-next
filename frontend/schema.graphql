@@ -261,6 +261,7 @@ type Query {
     i18NLocale(id: ID): I18NLocaleEntityResponse
     i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
     me: UsersPermissionsMe
+    search(locale: String, query: String!): SearchResponse
     uploadFile(id: ID): UploadFileEntityResponse
     uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
     uploadFolder(id: ID): UploadFolderEntityResponse
@@ -273,6 +274,10 @@ type Query {
 
 type ResponseCollectionMeta {
     pagination: Pagination!
+}
+
+type SearchResponse {
+    articles: ArticleEntityResponseCollection
 }
 
 type UploadFile {

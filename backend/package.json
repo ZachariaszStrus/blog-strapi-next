@@ -17,7 +17,8 @@
     "@strapi/strapi": "4.4.7",
     "better-sqlite3": "7.4.6",
     "pg": "^8.8.0",
-    "react-select": "^5.6.1"
+    "react-select": "^5.6.1",
+    "strapi-plugin-fuzzy-search": "^1.10.2"
   },
   "author": {
     "name": "A Strapi developer"
