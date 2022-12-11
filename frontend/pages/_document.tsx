@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head />
-      <body className="bg-background-dark text-fg-default relative">
+      <body className="relative bg-background-dark text-fg-default">
         <img alt="background" src="/background.webp" className="absolute" />
         <Main />
         <NextScript />

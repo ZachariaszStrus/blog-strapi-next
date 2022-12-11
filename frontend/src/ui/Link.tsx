@@ -5,7 +5,7 @@ import NextLink, { LinkProps } from "next/link";
 export const Link = ({ children, ...props }: PropsWithChildren<LinkProps>) => (
   <NextLink
     {...props}
-    className="transition-all duration-300 ease-in text-base py-0.5 border-b border-b-2 border-transparent hover:border-b-primary-300"
+    className="border-b border-b-2 border-transparent py-0.5 text-base transition-all duration-300 ease-in hover:border-b-primary-300"
   >
     {children}
   </NextLink>

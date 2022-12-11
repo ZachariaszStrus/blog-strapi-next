@@ -17,19 +17,19 @@ export const ArticleListComponent: FC<ArticleListProps> = ({
   createdAt,
 }) => {
   return (
-    <div className="flex flex-col relative group pointer-events-none ">
+    <div className="group pointer-events-none relative flex flex-col ">
       <div
         className={
-          "bg-background-dark  group-hover:opacity-100 rounded-lg border border-gray-700 absolute h-full w-full z-10"
+          "absolute  z-10 h-full w-full rounded-lg border border-gray-700 bg-background-dark group-hover:opacity-100"
         }
       />
-      <span className="w-0 h-full bg-primary-300 absolute top-[-1px] left-[-1px] duration-300 transition-all group-hover:w-[calc(100%_+_2px)] group-hover:h-[calc(100%_+_2px)] z-0 rounded-lg" />
+      <span className="absolute top-[-1px] left-[-1px] z-0 h-full w-0 rounded-lg bg-primary-300 transition-all duration-300 group-hover:h-[calc(100%_+_2px)] group-hover:w-[calc(100%_+_2px)]" />
       <div className={"z-10 py-4 px-6"}>
         <Text h3>{title}</Text>
         <Text faded className="pb-3">
           {description}
         </Text>
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <Text c faded>
             {format(parseISO(createdAt), "PPP")}
           </Text>

@@ -17,7 +17,7 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
   const nextPage = page === pageCount ? undefined : page + 1;
 
   return (
-    <div className="flex flex-col flex-1 gap-4">
+    <div className="flex flex-1 flex-col gap-4">
       {articles?.map(
         (article) =>
           article.attributes && (
@@ -30,13 +30,13 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
             />
           )
       )}
-      <div className="flex justify-center items-center gap-x-4">
+      <div className="flex items-center justify-center gap-x-4">
         {prevPage ? (
           <Link href={routes.articleList(prevPage)}>
-            <ChevronLeftIcon className="w-6 h-6" />
+            <ChevronLeftIcon className="h-6 w-6" />
           </Link>
         ) : (
-          <div className="w-6 h-6" />
+          <div className="h-6 w-6" />
         )}
         <Text pb>
           {page}
@@ -47,10 +47,10 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
         </Text>
         {nextPage ? (
           <Link href={routes.articleList(nextPage)}>
-            <ChevronRightIcon className="w-6 h-6" />
+            <ChevronRightIcon className="h-6 w-6" />
           </Link>
         ) : (
-          <div className="w-6 h-6" />
+          <div className="h-6 w-6" />
         )}
       </div>
     </div>

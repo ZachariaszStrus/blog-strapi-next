@@ -26,7 +26,7 @@ const SmallScreenNav = ({
       <div className="flex justify-between">
         {header ? <BlogTitle header={header} /> : <div />}
         <Component
-          className="h-10 w-10 text-primary-300 cursor-pointer mt-5"
+          className="mt-5 h-10 w-10 cursor-pointer text-primary-300"
           onClick={() => setIsNavOpen((value) => !value)}
         />
       </div>
@@ -40,7 +40,7 @@ const SmallScreenNav = ({
         <div
           className={
             isNavOpen
-              ? "absolute w-full h-screen top-0 left-0  bg-background-dark p-8 z-50"
+              ? "absolute top-0 left-0 z-50 h-screen  w-full bg-background-dark p-8"
               : "hidden"
           }
         >

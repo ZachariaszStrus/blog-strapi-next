@@ -57,7 +57,7 @@ const ArticleDetails: FC<ArticleDetailsProps> = ({ article }) => {
       <Head>
         <title>{article.title}</title>
       </Head>
-      <div className="flex flex-col w-full">
+      <div className="flex w-full flex-col">
         {article && (
           <ArticleDetailsComponent
             title={article.title}
