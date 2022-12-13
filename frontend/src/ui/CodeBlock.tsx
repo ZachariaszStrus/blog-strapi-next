@@ -13,8 +13,8 @@ interface CodeBlockProps
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ lang, content }) => {
   return (
-    <div className="rounded-xl mx-auto bg-gradient-to-r  p-0.5 from-secondary-200 via-primary-300 to-primary-600">
-      <div className={"bg-background-dracula py-px rounded-xl"}>
+    <div className="mx-auto rounded-xl bg-gradient-to-r  from-secondary-200 via-primary-300 to-primary-600 p-0.5">
+      <div className={"rounded-xl bg-background-dracula py-px"}>
         <SyntaxHighlighter
           language={lang || "dax"}
           style={dracula}
