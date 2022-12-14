@@ -1,13 +1,12 @@
 import { ArticleList } from "@ui";
 import { api } from "@api";
+import { notFound } from "next/navigation";
 
 const HomePage = async () => {
   const response = await api.articleList({ page: 1 });
 
   if (!response.articles?.data || !response.articles?.meta) {
-    return {
-      notFound: true,
-    };
+    notFound();
   }
 
   const articles = response.articles.data;

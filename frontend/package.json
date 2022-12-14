@@ -20,10 +20,11 @@
     "graphql": "^16.0.0",
     "graphql-request": "^5.0.0",
     "markdown-to-jsx": "^7.1.7",
-    "next": "13.0.6",
+    "next": "13.0.7-canary.6",
     "qs": "6.10.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-helmet": "^6.1.0",
     "react-syntax-highlighter": "^15.5.0",
     "tailwind-merge": "^1.8.0"
   },

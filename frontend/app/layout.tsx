@@ -1,7 +1,11 @@
-export default function RootLayout({
+import { ReactNode } from "react";
+
+import "../styles/globals.css";
+
+export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html>

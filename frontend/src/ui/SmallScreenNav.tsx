@@ -5,7 +5,6 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Navbar } from "./Navbar";
 import BlogTitle from "./BlogTitle";
 import { Header } from "@api";
-import { useRouter } from "next/router";
 
 interface SmallScreenNavProps {
   header?: Header | null;
@@ -17,8 +16,8 @@ const SmallScreenNav = ({
   isAboutInfoAvailable,
 }: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const router = useRouter();
-  router.events?.on("routeChangeComplete", () => setIsNavOpen(false));
+  // const router = useRouter();
+  // router.events?.on("routeChangeComplete", () => setIsNavOpen(false));
 
   const renderTopBar = useCallback(() => {
     const Component = isNavOpen ? XMarkIcon : Bars3Icon;
