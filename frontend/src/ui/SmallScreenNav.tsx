@@ -1,10 +1,11 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Navbar } from "./Navbar";
 import BlogTitle from "./BlogTitle";
 import { Header } from "@api";
+import { usePathname } from "next/navigation";
 
 interface SmallScreenNavProps {
   header?: Header | null;
@@ -16,8 +17,11 @@ const SmallScreenNav = ({
   isAboutInfoAvailable,
 }: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  // const router = useRouter();
-  // router.events?.on("routeChangeComplete", () => setIsNavOpen(false));
+
+  const pathname = usePathname();
+  useEffect(() => {
+    setIsNavOpen(false);
+  }, [pathname]);
 
   const renderTopBar = useCallback(() => {
     const Component = isNavOpen ? XMarkIcon : Bars3Icon;
