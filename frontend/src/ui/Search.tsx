@@ -2,6 +2,8 @@ import React, {FC, useEffect, useState} from 'react';
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import {api, ArticleEntity} from "@api";
 import SearchResults from "./SearchResults";
+import {useDebounce} from "./utils";
+import Spinner from "./Spinner";
 
 interface SearchProps {
     handleClick?: ()=> void;
@@ -12,15 +14,26 @@ const Search: FC<SearchProps> = ({handleClick, readOnly= false}) => {
     const [hover, setHover]=useState(false)
     const [searchedWord, setSearchedWord]=useState('')
     const [searchResults, setSearchResults]=useState<ArticleEntity[] | undefined>(undefined)
-
+    const [loading, setLoading]=useState(false)
+    const debouncedSearchWord = useDebounce(searchedWord, 500)
     const handleSearch = async () => {
         const res = await api.searchArticles({searchedWord})
         setSearchResults(res.search?.articles?.data)
+        setLoading(false);
     }
 
-    useEffect(() => {
-        handleSearch()
-    }, [searchedWord])
+    useEffect(
+        () => {
+            if (debouncedSearchWord) {
+                handleSearch()
+            } else {
+                setSearchResults(undefined);
+                setLoading(false)
+            }
+        },
+        [debouncedSearchWord]
+    );
+
 
     return (
         <div>
@@ -30,9 +43,12 @@ const Search: FC<SearchProps> = ({handleClick, readOnly= false}) => {
       </span>
         <input
                className={`py-2 text-sm text-fg-faded bg-gray-900 rounded-md pl-10 focus:outline-none ${hover && readOnly && 'border border-primary-300'} ${readOnly && 'cursor-pointer'} ${!readOnly && 'focus:border focus:border-primary-300'} w-full`}
-               placeholder="Search..." readOnly={readOnly}  autoComplete={'off'} onChange={(e) => setSearchedWord(e.target.value)}/>
+               placeholder="Search..." readOnly={readOnly}  autoComplete={'off'} onChange={(e) => {
+            e.target.value !== '' && setLoading(true)
+                   setSearchedWord(e.target.value)}}/>
     </div>
-           <SearchResults searchedWord={searchedWord} searchResults={searchResults} />
+            {loading ? <div className={'flex justify-center'}><Spinner /></div> : <SearchResults searchedWord={searchedWord} searchResults={searchResults} />}
+
         </div>
     )
 }
