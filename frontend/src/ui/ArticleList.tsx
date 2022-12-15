@@ -17,7 +17,7 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
   const nextPage = page === pageCount ? undefined : page + 1;
 
   return (
-    <div className="flex flex-1 flex-col gap-4">
+    <div className="flex flex-1 flex-col gap-4 px-8 lg:px-0">
       {articles?.map(
         (article) =>
           article.attributes && (

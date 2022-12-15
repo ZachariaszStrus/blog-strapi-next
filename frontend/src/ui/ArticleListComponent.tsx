@@ -23,9 +23,9 @@ export const ArticleListComponent: FC<ArticleListProps> = ({
           "absolute  z-10 h-full w-full rounded-lg border border-gray-700 bg-background-dark group-hover:opacity-100"
         }
       />
-      <span className="absolute top-[-1px] left-[-1px] z-0 h-full w-0 rounded-lg bg-primary-300 transition-all duration-300 group-hover:h-[calc(100%_+_2px)] group-hover:w-[calc(100%_+_2px)]" />
+      <span className="absolute top-[-1px] left-[-1px] z-0 h-full w-0 rounded-lg bg-gradient-to-br from-primary-200 to-primary-700 transition-all duration-300 group-hover:h-[calc(100%_+_2px)] group-hover:w-[calc(100%_+_2px)]" />
       <div className={"z-10 py-4 px-6"}>
-        <Text h3>{title}</Text>
+        <Text h4>{title}</Text>
         <Text faded className="pb-3">
           {description}
         </Text>
