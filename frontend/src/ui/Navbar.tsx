@@ -14,7 +14,7 @@ export const Navbar: FC<NavbarProps> = ({ isAboutInfoAvailable }) => {
   const [, setShowModal]=useAtom(modalState);
   return (
       <div>
-    <div className="flex flex-col gap-4 items-start">
+    <div className="flex flex-col items-start gap-4">
       <Link href={routes.home()}>home</Link>
       {isAboutInfoAvailable && <Link href={routes.about()}>about</Link>}
         <Search handleClick={() => setShowModal(true)} readOnly/>
