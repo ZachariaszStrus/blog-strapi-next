@@ -12,7 +12,7 @@
     "buildExport": "next build && next export"
   },
   "dependencies": {
-    "@headlessui/react": "^0.0.0-insiders.208c6fd",
+    "@headlessui/react": "^1.7.6",
     "@heroicons/react": "^2.0.13",
     "@types/node": "18.11.10",
     "class-variance-authority": "^0.3.0",

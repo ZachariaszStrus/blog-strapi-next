@@ -31,7 +31,7 @@ const Search: FC<SearchProps> = ({ handleClick, readOnly = false }) => {
       setSearchResults(undefined);
       setLoading(false);
     }
-  }, [debouncedSearchWord]);
+  }, [debouncedSearchWord, handleSearch]);
 
   return (
     <div>

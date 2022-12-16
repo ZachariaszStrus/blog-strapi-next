@@ -981,10 +981,10 @@
   resolved "https://registry.yarnpkg.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
-"@headlessui/react@^0.0.0-insiders.208c6fd":
-  version "0.0.0-insiders.208c6fd"
-  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-0.0.0-insiders.208c6fd.tgz#f280fff3838ade0c9b3663709a77e9f6e67fcf19"
-  integrity sha512-SSgEnS8r6AwH1hDS+7uiAWcKyLnAtxei5w4gHuCrHTiWEVxxcBTs4fgnTPGrNaIREtpXyiUPo1kdjKN2+JNghQ==
+"@headlessui/react@^1.7.6":
+  version "1.7.6"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.6.tgz#578fcd336955e4afcae8f223b26f8a121941c9ee"
+  integrity sha512-yM/IOGCRaS/DaQRchElrTiH0jOfYWbBX5wkZTAbPDu4OMYdQ1ateM/UgApOcv+7DNpeRaMjUz4bZ4xxNgTGNLA==
   dependencies:
     client-only "^0.0.1"
 
