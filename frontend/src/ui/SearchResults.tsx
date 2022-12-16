@@ -11,7 +11,7 @@ interface SearchResultsProps {
     searchedWord: string;
     searchResults: ArticleEntity[] | undefined;
 }
-//TODO highlight searched word in searchResults
+
 const SearchResults:FC<SearchResultsProps> = ({searchResults, searchedWord}) => {
     const [, setShowModal]=useAtom(modalState);
 
