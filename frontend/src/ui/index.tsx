@@ -17,4 +17,3 @@ export * from "./Modal";
 export * from "./SearchResults";
 export * from "./NoSearchResults";
 export * from "./Spinner";
-
