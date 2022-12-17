@@ -6,15 +6,21 @@ import { Navbar } from "./Navbar";
 import BlogTitle from "./BlogTitle";
 import { Header } from "@api";
 import { usePathname } from "next/navigation";
+import {
+  SocialMediaComponent,
+  SocialMediaComponentProps,
+} from "./SocialMediaComponent";
 
 interface SmallScreenNavProps {
   header?: Header | null;
   isAboutInfoAvailable: boolean;
+  socialMediaItems?: SocialMediaComponentProps["items"] | null;
 }
 
 const SmallScreenNav = ({
   header,
   isAboutInfoAvailable,
+  socialMediaItems,
 }: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
@@ -39,26 +45,25 @@ const SmallScreenNav = ({
   return (
     <>
       {renderTopBar()}
-      <div>
-        <div
-          className={
-            isNavOpen
-              ? "absolute top-0 left-0 z-50 h-screen  w-full bg-background-dark p-8"
-              : "hidden"
-          }
+      <div
+        className={
+          isNavOpen
+            ? "fixed top-0 left-0 z-50 flex  h-screen w-full flex-col bg-background-dark p-8"
+            : "hidden"
+        }
+      >
+        {renderTopBar()}
+        <Transition
+          show={isNavOpen}
+          enter="transition-opacity duration-700"
+          enterFrom="opacity-0"
+          enterTo="opacity-100 flex flex-col flex-1"
         >
-          {renderTopBar()}
-          <Transition
-            show={isNavOpen}
-            enter="transition-opacity duration-700"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-          >
-            <div className={"mt-10 ml-4"}>
-              <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
-            </div>
-          </Transition>
-        </div>
+          <div className="flex flex-1 flex-col  justify-between py-16 px-4">
+            <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
+            <SocialMediaComponent items={socialMediaItems} />
+          </div>
+        </Transition>
       </div>
     </>
   );

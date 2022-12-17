@@ -29,7 +29,6 @@ export type About = {
   blocks?: Maybe<Array<Maybe<AboutBlocksDynamicZone>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  title: Scalars['String'];
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -49,7 +48,6 @@ export type AboutEntityResponse = {
 export type AboutInput = {
   blocks?: InputMaybe<Array<Scalars['AboutBlocksDynamicZoneInput']>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
-  title?: InputMaybe<Scalars['String']>;
 };
 
 export type Article = {
@@ -284,6 +282,30 @@ export type ComponentSharedSeoInput = {
   shareImage?: InputMaybe<Scalars['ID']>;
 };
 
+export type ComponentSharedSocialMediaItem = {
+  __typename?: 'ComponentSharedSocialMediaItem';
+  icon?: Maybe<Enum_Componentsharedsocialmediaitem_Icon>;
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type ComponentSharedSocialMediaItemFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentSharedSocialMediaItemFiltersInput>>>;
+  icon?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentSharedSocialMediaItemFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentSharedSocialMediaItemFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentSharedSocialMediaItemInput = {
+  icon?: InputMaybe<Enum_Componentsharedsocialmediaitem_Icon>;
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -307,6 +329,11 @@ export type DateTimeFilterInput = {
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
 };
+
+export enum Enum_Componentsharedsocialmediaitem_Icon {
+  Github = 'github',
+  Linkedin = 'linkedin'
+}
 
 export type Error = {
   __typename?: 'Error';
@@ -344,7 +371,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = About | Article | Author | Category | ComponentSharedCodeBlock | ComponentSharedMedia | ComponentSharedRichText | ComponentSharedSeo | Global | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = About | Article | Author | Category | ComponentSharedCodeBlock | ComponentSharedMedia | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSocialMediaItem | Global | Header | I18NLocale | SocialMedia | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Global = {
   __typename?: 'Global';
@@ -529,6 +556,7 @@ export type Mutation = {
   deleteCategory?: Maybe<CategoryEntityResponse>;
   deleteGlobal?: Maybe<GlobalEntityResponse>;
   deleteHeader?: Maybe<HeaderEntityResponse>;
+  deleteSocialMedia?: Maybe<SocialMediaEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Delete an existing role */
@@ -553,6 +581,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateGlobal?: Maybe<GlobalEntityResponse>;
   updateHeader?: Maybe<HeaderEntityResponse>;
+  updateSocialMedia?: Maybe<SocialMediaEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
   /** Update an existing role */
@@ -719,6 +748,11 @@ export type MutationUpdateHeaderArgs = {
 };
 
 
+export type MutationUpdateSocialMediaArgs = {
+  data: SocialMediaInput;
+};
+
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
@@ -785,6 +819,7 @@ export type Query = {
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  socialMedia?: Maybe<SocialMediaEntityResponse>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
   uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
   uploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -863,6 +898,11 @@ export type QueryI18NLocalesArgs = {
 };
 
 
+export type QuerySocialMediaArgs = {
+  publicationState?: InputMaybe<PublicationState>;
+};
+
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
@@ -913,6 +953,37 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type SocialMedia = {
+  __typename?: 'SocialMedia';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  items: Array<Maybe<ComponentSharedSocialMediaItem>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type SocialMediaItemsArgs = {
+  filters?: InputMaybe<ComponentSharedSocialMediaItemFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type SocialMediaEntity = {
+  __typename?: 'SocialMediaEntity';
+  attributes?: Maybe<SocialMedia>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type SocialMediaEntityResponse = {
+  __typename?: 'SocialMediaEntityResponse';
+  data?: Maybe<SocialMediaEntity>;
+};
+
+export type SocialMediaInput = {
+  items?: InputMaybe<Array<InputMaybe<ComponentSharedSocialMediaItemInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
 };
 
 export type StringFilterInput = {
@@ -1315,7 +1386,7 @@ export type UsersPermissionsUserRelationResponseCollection = {
 export type AboutDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AboutDetailsQuery = { __typename?: 'Query', about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', attributes?: { __typename?: 'About', title: string, blocks?: Array<{ __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', message?: string | null, code: string } | null> | null } | null } | null } | null };
+export type AboutDetailsQuery = { __typename?: 'Query', about?: { __typename?: 'AboutEntityResponse', data?: { __typename?: 'AboutEntity', attributes?: { __typename?: 'About', blocks?: Array<{ __typename: 'ComponentSharedMedia', id: string, file: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, hash: string, mime: string, name: string, provider: string, size: number } | null } | null } } | { __typename: 'ComponentSharedRichText', id: string, body: string } | { __typename: 'Error', message?: string | null, code: string } | null> | null } | null } | null } | null };
 
 export type ArticleAuthorFragment = { __typename?: 'Article', author?: { __typename?: 'AuthorEntityResponse', data?: { __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', name: string } | null } | null } | null };
 
@@ -1373,6 +1444,11 @@ type ComponentSharedMediaBlock_ComponentSharedRichText_Fragment = { __typename: 
 type ComponentSharedMediaBlock_Error_Fragment = { __typename: 'Error' };
 
 export type ComponentSharedMediaBlockFragment = ComponentSharedMediaBlock_ComponentSharedCodeBlock_Fragment | ComponentSharedMediaBlock_ComponentSharedMedia_Fragment | ComponentSharedMediaBlock_ComponentSharedRichText_Fragment | ComponentSharedMediaBlock_Error_Fragment;
+
+export type SocialMediaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SocialMediaQuery = { __typename?: 'Query', socialMedia?: { __typename?: 'SocialMediaEntityResponse', data?: { __typename?: 'SocialMediaEntity', attributes?: { __typename?: 'SocialMedia', items: Array<{ __typename?: 'ComponentSharedSocialMediaItem', title: string, url: string, icon?: Enum_Componentsharedsocialmediaitem_Icon | null } | null> } | null } | null } | null };
 
 export const ArticleAuthorFragmentDoc = gql`
     fragment ArticleAuthor on Article {
@@ -1453,7 +1529,6 @@ export const AboutDetailsDocument = gql`
   about {
     data {
       attributes {
-        title
         blocks {
           ...ComponentSharedRichTextBlock
           ...ComponentSharedMediaBlock
@@ -1554,6 +1629,21 @@ export const HeaderDetailsDocument = gql`
   }
 }
     `;
+export const SocialMediaDocument = gql`
+    query socialMedia {
+  socialMedia {
+    data {
+      attributes {
+        items {
+          title
+          url
+          icon
+        }
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -1579,6 +1669,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     headerDetails(variables?: HeaderDetailsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<HeaderDetailsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<HeaderDetailsQuery>(HeaderDetailsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'headerDetails', 'query');
+    },
+    socialMedia(variables?: SocialMediaQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SocialMediaQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SocialMediaQuery>(SocialMediaDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'socialMedia', 'query');
     }
   };
 }
