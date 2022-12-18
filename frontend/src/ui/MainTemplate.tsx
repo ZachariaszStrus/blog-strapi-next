@@ -21,7 +21,7 @@ export const MainTemplate = ({
   return (
     <div className="relative flex w-full justify-center">
       <div className="flex max-w-6xl flex-1 flex-col lg:flex-row">
-        <div className="pt-8 pb=4 w-full px-8 lg:hidden">
+        <div className="pb=4 w-full px-8 pt-8 lg:hidden">
           <SmallScreenNav
             header={header}
             isAboutInfoAvailable={isAboutInfoAvailable}
