@@ -1,30 +1,31 @@
 import { Transition } from "@headlessui/react";
 import React, { FC, ReactNode } from "react";
-import { atom, useAtom } from "jotai";
+import { atom } from "jotai";
 
 export const modalState = atom(false);
 
 interface ModalProps {
   children: ReactNode;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-const Modal: FC<ModalProps> = ({ children }) => {
-  const [showModal, setShowModal] = useAtom(modalState);
+const Modal: FC<ModalProps> = ({ isOpen,onClose, children }) => {
   return (
-    <div className={`relative z-50 ${!showModal && "hidden"}`}>
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75" />
+    <div className={`relative z-50 ${!isOpen && "hidden"}`}>
+      <div className="fixed inset-0  backdrop-blur-sm" />
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div
           className="mt-20 flex min-h-full items-start justify-center p-4 p-0 text-center"
           onClick={(e) => {
             e.stopPropagation();
             e.preventDefault();
-            setShowModal(false);
+              onClose()
           }}
         >
           <div className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg">
             <Transition
-              show={showModal}
+              show={isOpen}
               enter="transition-opacity duration-500"
               enterFrom="opacity-90"
               enterTo="opacity-100"
