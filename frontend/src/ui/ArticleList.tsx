@@ -1,15 +1,11 @@
 import { ArticleListComponent } from "./ArticleListComponent";
 import { ArticleEntity } from "@api";
-import {modalState, Text} from "@ui";
+import {Text} from "@ui";
 import { routes } from "@utils";
 import { FC } from "react";
 import { Link } from "./Link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import Search from "./SearchComponent";
 import * as React from "react";
-import Modal from "./Modal";
-import SearchTrigger from "./SearchTrigger";
-import {useAtom} from "jotai";
 
 interface HomeProps {
   articles: ArticleEntity[];
@@ -20,13 +16,9 @@ interface HomeProps {
 export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
   const prevPage = page === 1 ? undefined : page - 1;
   const nextPage = page === pageCount ? undefined : page + 1;
-  const [showModal, setShowModal]=useAtom(modalState);
 
   return (
     <div className="flex flex-1 flex-col gap-4">
-      <div className={"lg:hidden"}>
-        <SearchTrigger />
-      </div>
       {articles?.map(
         (article) =>
           article.attributes && (
@@ -61,11 +53,6 @@ export const ArticleList: FC<HomeProps> = ({ articles, pageCount, page }) => {
         ) : (
           <div className="h-6 w-6" />
         )}
-      </div>
-      <div className={"lg:hidden"}>
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <Search />
-        </Modal>
       </div>
     </div>
   );
