@@ -1,8 +1,8 @@
-import Head from "next/head";
+import { Helmet } from "react-helmet";
 import { useEffect, useState } from "react";
 
 export const CommentsGiscus = () => {
-  const [isClientSide, setIsClientSide] = useState(false);
+  const [isClientSide, setIsClientSide] = useState(true);
 
   useEffect(() => {
     setIsClientSide(true);
@@ -10,7 +10,7 @@ export const CommentsGiscus = () => {
 
   return isClientSide ? (
     <>
-      <Head>
+      <Helmet>
         <script
           src="https://giscus.app/client.js"
           data-repo={process.env.NEXT_PUBLIC_GISCUS_REPO}
@@ -27,7 +27,7 @@ export const CommentsGiscus = () => {
           crossOrigin="anonymous"
           async
         ></script>
-      </Head>
+      </Helmet>
       <div className="giscus" />
     </>
   ) : null;
