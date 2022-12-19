@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { api, ArticleEntity } from "@api";
 import SearchResults from "./SearchResults";
@@ -18,11 +18,11 @@ const Search: FC<SearchProps> = ({ handleClick, readOnly = false }) => {
   >(undefined);
   const [loading, setLoading] = useState(false);
   const debouncedSearchWord = useDebounce(searchedWord, 500);
-  const handleSearch = async () => {
+  const handleSearch = useCallback(async () => {
     const res = await api.searchArticles({ searchedWord });
     setSearchResults(res.search?.articles?.data);
     setLoading(false);
-  };
+  }, [searchedWord]);
 
   useEffect(() => {
     if (debouncedSearchWord) {
