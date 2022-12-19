@@ -1,11 +1,10 @@
 import React, { FC } from "react";
 import { ArticleEntity } from "@api";
-import { Text } from "./Text";
-import NoSearchResults from "./NoSearchResults";
+import { Text, modalState } from "@ui";
 import NextLink from "next/link";
 import { routes } from "@utils";
 import { useAtom } from "jotai";
-import { modalState } from "./Modal";
+import NoSearchResults from "./NoSearchResults";
 
 interface SearchResultsProps {
   searchedWord: string;

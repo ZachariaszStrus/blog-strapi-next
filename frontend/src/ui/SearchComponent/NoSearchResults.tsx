@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
-import { Text } from "./Text";
+import { Text } from "@ui";
 
 interface NoSearchResultsProps {
   searchedWord: string;

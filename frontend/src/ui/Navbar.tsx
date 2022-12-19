@@ -2,9 +2,9 @@ import * as React from "react";
 import { Link, modalState } from "@ui";
 import { routes } from "@utils";
 import { FC } from "react";
-import Search from "./Search";
-import Modal from "./Modal";
 import { useAtom } from "jotai";
+import Search from "./SearchComponent";
+import Modal from "./Modal";
 
 interface NavbarProps {
   isAboutInfoAvailable: boolean;
