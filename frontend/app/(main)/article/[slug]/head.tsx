@@ -1,5 +1,5 @@
 import { api } from "@api";
-import DefaultTags from "../../DefaultHead";
+import DefaultTags from "../../../DefaultTags";
 
 export default async function Head({ params }: { params: { slug: string } }) {
   const response = await api.articleDetails({ slug: params.slug || "" });

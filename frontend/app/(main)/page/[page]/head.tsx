@@ -1,4 +1,4 @@
-import DefaultTags from "../../DefaultHead";
+import DefaultTags from "../../../DefaultTags";
 
 export default async function Head() {
   return (

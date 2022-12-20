@@ -1,5 +1,5 @@
 import { api } from "@api";
-import DefaultTags from "./DefaultHead";
+import DefaultTags from "../DefaultTags";
 
 export default async function Head() {
   const response = await api.globalDetails();
@@ -11,6 +11,7 @@ export default async function Head() {
 
   return (
     <>
+      <DefaultTags />
       <title>{global.siteName}</title>
       {global.favicon?.data?.attributes?.url && (
         <link
@@ -20,7 +21,6 @@ export default async function Head() {
           href={global.favicon?.data?.attributes?.url}
         />
       )}
-      <DefaultTags />
     </>
   );
 }
