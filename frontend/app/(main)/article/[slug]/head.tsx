@@ -1,4 +1,5 @@
 import { api } from "@api";
+import DefaultTags from "../../../DefaultTags";
 
 export default async function Head({ params }: { params: { slug: string } }) {
   const response = await api.articleDetails({ slug: params.slug || "" });
@@ -10,7 +11,7 @@ export default async function Head({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <DefaultTags />
       <title>{article.title}</title>
     </>
   );
