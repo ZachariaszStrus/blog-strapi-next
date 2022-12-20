@@ -6,7 +6,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [responseHeader, responseAbout, responseSocial] = await Promise.all([
+  const [responseHeader, responseAbout] = await Promise.all([
     api.headerDetails(),
     api.aboutDetails(),
     api.socialMedia(),

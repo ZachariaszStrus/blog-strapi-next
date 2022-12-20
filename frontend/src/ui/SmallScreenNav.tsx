@@ -48,7 +48,7 @@ const SmallScreenNav = ({
       <div
         className={
           isNavOpen
-            ? "fixed top-0 left-0 z-50 flex  h-screen w-full flex-col bg-background-dark p-8"
+            ? "fixed top-0 left-0 z-50 flex  h-screen w-full flex-col bg-background-dark py-8 px-6 md:px-8"
             : "hidden"
         }
       >
