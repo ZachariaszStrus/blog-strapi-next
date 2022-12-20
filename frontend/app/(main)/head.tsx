@@ -1,5 +1,4 @@
 import { api } from "@api";
-import DefaultTags from "../DefaultTags";
 
 export default async function Head() {
   const response = await api.globalDetails();
@@ -11,7 +10,7 @@ export default async function Head() {
 
   return (
     <>
-      <DefaultTags />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <title>{global.siteName}</title>
       {global.favicon?.data?.attributes?.url && (
         <link
