@@ -1,4 +1,5 @@
 import { api } from "@api";
+import DefaultTags from "./DefaultHead";
 
 export default async function Head() {
   const response = await api.globalDetails();
@@ -19,6 +20,7 @@ export default async function Head() {
           href={global.favicon?.data?.attributes?.url}
         />
       )}
+      <DefaultTags />
     </>
   );
 }

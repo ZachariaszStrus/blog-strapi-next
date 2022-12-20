@@ -7,7 +7,7 @@ interface ContentWrapperProps {
 
 const ContentWrapper: FC<ContentWrapperProps> = ({ children }) => {
   return (
-    <div className="flex flex-1 flex-col rounded-lg bg-gradient-to-b from-background-dark py-6 px-8 lg:px-6">
+    <div className="flex flex-1 flex-col rounded-lg bg-gradient-to-b from-background-dark py-6 px-4 md:px-8 lg:px-6">
       {children}
     </div>
   );
