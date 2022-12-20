@@ -5,7 +5,11 @@ export default async function Head() {
   const global = response.global?.data?.attributes;
 
   if (!global) {
-    return null;
+    return (
+      <>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </>
+    );
   }
 
   return (
