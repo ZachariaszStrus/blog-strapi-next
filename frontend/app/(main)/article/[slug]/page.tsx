@@ -31,9 +31,6 @@ const ArticleDetails = async ({ params }: { params: { slug: string } }) => {
           createdAt={article.createdAt}
         />
       )}
-      <div className="m-8">
-        <CommentsGiscus />
-      </div>
     </div>
   );
 };
