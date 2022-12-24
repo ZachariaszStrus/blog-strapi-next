@@ -13,7 +13,7 @@ const Input: FC<InputProps> = ({ onClick, ...props }) => {
   const [hover, setHover] = useState(false);
   return (
     <div
-      className="relative mb-3 text-gray-600 focus-within:text-gray-400"
+      className="relative text-gray-600 focus-within:text-gray-400"
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onClick={onClick}
@@ -22,7 +22,7 @@ const Input: FC<InputProps> = ({ onClick, ...props }) => {
         <MagnifyingGlassIcon className="h-6 w-6 cursor-pointer text-primary-300" />
       </span>
       <input
-        className={`rounded-md bg-gray-900 py-2 pl-10 text-sm text-fg-faded focus:outline-none border border-transparent ${
+        className={`rounded-md border border-transparent bg-gray-900 py-2 pl-10 text-sm text-fg-faded focus:outline-none ${
           hover && props.readOnly && "border border-primary-300"
         } ${props.readOnly && "cursor-pointer"} ${
           !props.readOnly && "focus:border focus:border-primary-300"

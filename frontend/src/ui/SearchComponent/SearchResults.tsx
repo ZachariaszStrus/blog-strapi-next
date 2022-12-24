@@ -44,7 +44,7 @@ const SearchResults: FC<SearchResultsProps> = ({
         searchResults.map(({ id, attributes }) => (
           <div
             key={id}
-            className={"mb-3 space-y-1 rounded-md p-2 hover:bg-gray-800"}
+            className={"mb-3 space-y-1 rounded-md p-2 hover:bg-gray-900"}
           >
             <NextLink
               href={routes.articleDetails(attributes?.slug as string)}

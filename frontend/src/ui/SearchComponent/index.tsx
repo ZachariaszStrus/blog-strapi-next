@@ -36,11 +36,13 @@ const Search: FC<SearchProps> = ({ readOnly = false }) => {
 
   return (
     <div>
-      <Input defaultValue={searchedWord}    onChange={(e) => {
-        e.target.value !== "" && setLoading(true);
-        setSearchedWord(e.target.value);
-      }}
-      autoFocus
+      <Input
+        defaultValue={searchedWord}
+        onChange={(e) => {
+          e.target.value !== "" && setLoading(true);
+          setSearchedWord(e.target.value);
+        }}
+        autoFocus
       />
       {!readOnly &&
         (loading ? (

@@ -1,6 +1,6 @@
 import { ArticleListComponent } from "./ArticleListComponent";
 import { ArticleEntity } from "@api";
-import {Text} from "@ui";
+import { Text } from "@ui";
 import { routes } from "@utils";
 import { FC } from "react";
 import { Link } from "./Link";

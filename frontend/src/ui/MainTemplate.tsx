@@ -3,10 +3,10 @@ import { Header } from "@api";
 import SmallScreenNav from "./SmallScreenNav";
 import BigScreenNav from "./BigScreenNav";
 import SearchTrigger from "./SearchTrigger";
-import Modal, {modalState} from "./Modal";
+import Modal, { modalState } from "./Modal";
 import Search from "./SearchComponent";
 import * as React from "react";
-import {useAtom} from "jotai";
+import { useAtom } from "jotai";
 
 interface MainTemplateProps {
   header?: Header | null;
@@ -18,7 +18,7 @@ export const MainTemplate = ({
   header,
   isAboutInfoAvailable,
 }: PropsWithChildren<MainTemplateProps>) => {
-  const [showModal, setShowModal]=useAtom(modalState);
+  const [showModal, setShowModal] = useAtom(modalState);
   return (
     <div className="relative flex w-full justify-center">
       <div className="flex max-w-6xl flex-1 flex-col p-8 lg:flex-row">
@@ -36,18 +36,18 @@ export const MainTemplate = ({
             />
           </div>
           <main className="flex flex-1">
-            <div className={
-              'flex-col flex-1'
-            }>
-              <div className={'lg:hidden'}><SearchTrigger /></div>
-            {children}
+            <div className={"flex-1 flex-col"}>
+              <div className={"lg:hidden mb-3"}>
+                <SearchTrigger />
+              </div>
+              {children}
             </div>
-            </main>
+          </main>
         </div>
       </div>
-        <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
-          <Search />
-        </Modal>
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        <Search />
+      </Modal>
     </div>
   );
 };

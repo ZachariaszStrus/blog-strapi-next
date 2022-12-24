@@ -17,11 +17,22 @@ const SmallScreenNav = ({
   isAboutInfoAvailable,
 }: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   const pathname = usePathname();
   useEffect(() => {
     setIsNavOpen(false);
   }, [pathname]);
+
+  const handleNavBarVisibility = async () => {
+    if (!isNavOpen) {
+      setIsNavOpen(true);
+      setShowContent(true);
+    } else {
+      setShowContent(false);
+      setTimeout(() => setIsNavOpen(false), 700);
+    }
+  };
 
   const renderTopBar = useCallback(() => {
     const Component = isNavOpen ? XMarkIcon : Bars3Icon;
@@ -30,11 +41,11 @@ const SmallScreenNav = ({
         {header ? <BlogTitle header={header} /> : <div />}
         <Component
           className="mt-5 h-10 w-10 cursor-pointer text-primary-300"
-          onClick={() => setIsNavOpen((value) => !value)}
+          onClick={handleNavBarVisibility}
         />
       </div>
     );
-  }, [header, isNavOpen]);
+  }, [header, isNavOpen, handleNavBarVisibility]);
 
   return (
     <>
@@ -49,12 +60,15 @@ const SmallScreenNav = ({
         >
           {renderTopBar()}
           <Transition
-            show={isNavOpen}
+            show={showContent}
             enter="transition-opacity duration-700"
             enterFrom="opacity-0"
             enterTo="opacity-100"
+            leave="transition-all ease-out duration-700 "
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
           >
-            <div className={"mt-10 ml-4"}>
+            <div className={"mt-10 ml-4 "}>
               <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
             </div>
           </Transition>

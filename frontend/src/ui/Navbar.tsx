@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Link} from "@ui";
+import { Link } from "@ui";
 import { routes } from "@utils";
 import { FC } from "react";
 import SearchTrigger from "./SearchTrigger";
@@ -15,9 +15,8 @@ export const Navbar: FC<NavbarProps> = ({ isAboutInfoAvailable }) => {
         <Link href={routes.home()}>home</Link>
         {isAboutInfoAvailable && <Link href={routes.about()}>about</Link>}
         <div className={"hidden lg:block"}>
-            <SearchTrigger />
+          <SearchTrigger />
         </div>
-          test
       </div>
     </div>
   );
