@@ -16,5 +16,4 @@ export * from "./AboutComponent";
 export * from "./CommentsGiscus";
 export * from "./Modal";
 export * from "./Spinner";
-export * from "./SearchComponent";
-export * from "./SearchTrigger";
+export * from "./Search";

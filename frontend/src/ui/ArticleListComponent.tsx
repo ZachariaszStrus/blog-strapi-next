@@ -18,13 +18,9 @@ export const ArticleListComponent: FC<ArticleListProps> = ({
 }) => {
   return (
     <div className="group pointer-events-none relative flex flex-col ">
-      <div
-        className={
-          "absolute  z-10 h-full w-full rounded-lg border border-gray-700 bg-background-dark group-hover:opacity-100"
-        }
-      />
+      <div className="absolute  z-10 h-full w-full rounded-lg border border-gray-700 bg-background-dark group-hover:opacity-100" />
       <span className="absolute top-[-1px] left-[-1px] z-0 h-full w-0 rounded-lg bg-primary-300 transition-all duration-300 group-hover:h-[calc(100%_+_2px)] group-hover:w-[calc(100%_+_2px)]" />
-      <div className={"z-10 py-4 px-6"}>
+      <div className="z-10 py-4 px-6">
         <Text h3>{title}</Text>
         <Text faded className="pb-3">
           {description}
@@ -33,11 +29,8 @@ export const ArticleListComponent: FC<ArticleListProps> = ({
           <Text c faded>
             {format(parseISO(createdAt), "PPP")}
           </Text>
-          <div className={"pointer-events-auto"}>
-            <NextLink
-              href={routes.articleDetails(slug)}
-              className={"text-base"}
-            >
+          <div className="pointer-events-auto">
+            <NextLink href={routes.articleDetails(slug)} className="text-base">
               read more
             </NextLink>
           </div>

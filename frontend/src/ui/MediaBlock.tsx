@@ -8,7 +8,7 @@ const MediaBlock: FC<MediaBlockProps> = ({ file }) => {
     <img
       src={file.data?.attributes?.url}
       alt={file.data?.attributes?.name}
-      className={"max-w-full"}
+      className="max-w-full"
     />
   );
 };

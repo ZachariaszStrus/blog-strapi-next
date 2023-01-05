@@ -2,28 +2,30 @@ import React, { FC, useCallback, useEffect, useState } from "react";
 import { api, ArticleEntity } from "@api";
 import { useDebounce } from "../utils";
 import Spinner from "../Spinner";
-import SearchResults from "./SearchResults";
+import { SearchResults } from "./SearchResults";
 import { useAtom } from "jotai";
-import { searchedWordState } from "./state";
-import Input from "../Input";
+import { displaySearchState, searchedWordState } from "./state";
+import Input from "./Input";
+import Modal from "../Modal";
 
 interface SearchProps {
   handleClick?: () => void;
-  readOnly?: boolean;
 }
 
-const Search: FC<SearchProps> = ({ readOnly = false }) => {
+export const Search: FC<SearchProps> = () => {
+  const [showModal, setShowModal] = useAtom(displaySearchState);
   const [searchedWord, setSearchedWord] = useAtom(searchedWordState);
   const [searchResults, setSearchResults] = useState<
     ArticleEntity[] | undefined
   >(undefined);
   const [loading, setLoading] = useState(false);
   const debouncedSearchWord = useDebounce(searchedWord, 500);
+
   const handleSearch = useCallback(async () => {
-    const res = await api.searchArticles({ searchedWord });
+    const res = await api.searchArticles({ searchedWord: debouncedSearchWord });
     setSearchResults(res.search?.articles?.data);
     setLoading(false);
-  }, [searchedWord]);
+  }, [debouncedSearchWord]);
 
   useEffect(() => {
     if (debouncedSearchWord) {
@@ -35,18 +37,18 @@ const Search: FC<SearchProps> = ({ readOnly = false }) => {
   }, [debouncedSearchWord, handleSearch]);
 
   return (
-    <div>
-      <Input
-        defaultValue={searchedWord}
-        onChange={(e) => {
-          e.target.value !== "" && setLoading(true);
-          setSearchedWord(e.target.value);
-        }}
-        autoFocus
-      />
-      {!readOnly &&
-        (loading ? (
-          <div className={"flex justify-center"}>
+    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+      <div className="space-y-6">
+        <Input
+          defaultValue={searchedWord}
+          onChange={(e) => {
+            e.target.value !== "" && setLoading(true);
+            setSearchedWord(e.target.value);
+          }}
+          autoFocus
+        />
+        {loading ? (
+          <div className="flex justify-center">
             <Spinner />
           </div>
         ) : (
@@ -54,9 +56,8 @@ const Search: FC<SearchProps> = ({ readOnly = false }) => {
             searchedWord={searchedWord}
             searchResults={searchResults}
           />
-        ))}
-    </div>
+        )}
+      </div>
+    </Modal>
   );
 };
-
-export default Search;

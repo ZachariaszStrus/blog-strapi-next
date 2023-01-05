@@ -1,15 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC, InputHTMLAttributes, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import clsx from "clsx";
 
-interface InputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   onClick?: () => void;
 }
 
-const Input: FC<InputProps> = ({ onClick, ...props }) => {
+const Input: FC<InputProps> = ({ onClick, readOnly, ...props }) => {
   const [hover, setHover] = useState(false);
   return (
     <div
@@ -22,13 +19,14 @@ const Input: FC<InputProps> = ({ onClick, ...props }) => {
         <MagnifyingGlassIcon className="h-6 w-6 cursor-pointer text-primary-300" />
       </span>
       <input
-        className={`rounded-md border border-transparent bg-gray-900 py-2 pl-10 text-sm text-fg-faded focus:outline-none ${
-          hover && props.readOnly && "border border-primary-300"
-        } ${props.readOnly && "cursor-pointer"} ${
-          !props.readOnly && "focus:border focus:border-primary-300"
-        } w-full`}
+        className={clsx(
+          "w-full rounded-md border border-transparent bg-gray-900 py-2 pl-10 text-sm text-fg-faded focus:outline-none",
+          hover && readOnly && "border border-primary-300",
+          readOnly ? "cursor-pointer" : "focus:border focus:border-primary-300"
+        )}
         placeholder="Search..."
-        autoComplete={"off"}
+        autoComplete="off"
+        readOnly={readOnly}
         {...props}
       />
     </div>

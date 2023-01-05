@@ -19,7 +19,7 @@ export const ArticleDetailsComponent: FC<ArticleDetailsComponentProps> = ({
     <ContentWrapper>
       <Text h2>{title}</Text>
       {createdAt && (
-        <Text c faded className={"pb-3"}>
+        <Text c faded className="pb-3">
           {format(parseISO(createdAt), "PPP")}
         </Text>
       )}
