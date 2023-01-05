@@ -5,6 +5,7 @@ import { routes } from "@utils";
 import { FC } from "react";
 import { Link } from "./Link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import * as React from "react";
 
 interface HomeProps {
   articles: ArticleEntity[];

@@ -2,6 +2,8 @@ import { PropsWithChildren } from "react";
 import { Header } from "@api";
 import SmallScreenNav from "./SmallScreenNav";
 import BigScreenNav from "./BigScreenNav";
+import { Search } from "./Search";
+import * as React from "react";
 
 interface MainTemplateProps {
   header?: Header | null;
@@ -22,8 +24,8 @@ export const MainTemplate = ({
             isAboutInfoAvailable={isAboutInfoAvailable}
           />
         </div>
-        <div className="flex flex-1 gap-x-8">
-          <div className="flex hidden w-60 lg:block">
+        <div className="flex flex-1">
+          <div className="flex hidden max-w-xs flex-1 pr-16 lg:block">
             <BigScreenNav
               header={header}
               isAboutInfoAvailable={isAboutInfoAvailable}
@@ -32,6 +34,7 @@ export const MainTemplate = ({
           <main className="flex flex-1">{children}</main>
         </div>
       </div>
+      <Search />
     </div>
   );
 };
