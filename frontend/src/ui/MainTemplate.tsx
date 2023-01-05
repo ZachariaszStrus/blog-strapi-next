@@ -17,8 +17,8 @@ export const MainTemplate = ({
 }: PropsWithChildren<MainTemplateProps>) => {
   return (
     <div className="relative flex w-full justify-center">
-      <div className="flex max-w-6xl flex-1 flex-col p-8 lg:flex-row">
-        <div className="mb-8 w-full lg:hidden">
+      <div className="flex max-w-6xl flex-1 flex-col py-8 lg:px-8">
+        <div className="mb-8 w-full px-6 md:px-8 lg:hidden">
           <SmallScreenNav
             header={header}
             isAboutInfoAvailable={isAboutInfoAvailable}
