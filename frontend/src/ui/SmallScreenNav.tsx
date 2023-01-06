@@ -8,15 +8,21 @@ import { Header } from "@api";
 import { usePathname } from "next/navigation";
 import { SearchTrigger } from "./Search";
 import clsx from "clsx";
+import {
+  SocialMediaComponent,
+  SocialMediaComponentProps,
+} from "./SocialMediaComponent";
 
 interface SmallScreenNavProps {
   header?: Header | null;
   isAboutInfoAvailable: boolean;
+  socialMediaItems?: SocialMediaComponentProps["items"] | null;
 }
 
 const SmallScreenNav = ({
   header,
   isAboutInfoAvailable,
+  socialMediaItems,
 }: SmallScreenNavProps) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [showContent, setShowContent] = useState(false);
@@ -58,7 +64,7 @@ const SmallScreenNav = ({
       <div>
         <div
           className={clsx(
-            "absolute top-0 left-0 z-50 h-screen w-full bg-background-dark py-8 px-6 md:px-8",
+            "fixed top-0 left-0 z-50 flex h-screen w-full flex-col bg-background-dark py-8 px-6 md:px-8",
             !isNavOpen && "hidden"
           )}
         >
@@ -67,13 +73,14 @@ const SmallScreenNav = ({
             show={showContent}
             enter="transition-opacity duration-700"
             enterFrom="opacity-0"
-            enterTo="opacity-100"
+            enterTo="opacity-100 flex flex-col flex-1"
             leave="transition-all ease-out duration-700"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="mt-10 ml-4">
+            <div className="flex flex-1 flex-col  justify-between py-16 px-4">
               <Navbar isAboutInfoAvailable={isAboutInfoAvailable} />
+              <SocialMediaComponent items={socialMediaItems} />
             </div>
           </Transition>
         </div>

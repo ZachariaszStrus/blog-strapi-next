@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_social_media_items",
+  "info": {
+    "displayName": "Social media item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "enumeration",
+      "enum": [
+        "linkedin",
+        "github"
+      ]
+    }
+  }
+}

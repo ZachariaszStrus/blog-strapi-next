@@ -10,7 +10,9 @@ export default async function RootLayout({
   return (
     <html>
       <body className="relative bg-background-dark text-fg-default">
-        <img alt="background" src="/background.webp" className="absolute" />
+        <div className="absolute h-full w-screen overflow-hidden">
+          <img alt="background" src="/background.webp" className="w-full" />
+        </div>
         {children}
       </body>
     </html>

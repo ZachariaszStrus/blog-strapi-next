@@ -14,7 +14,7 @@ const Page = async () => {
 
   const aboutData = response.about.data.attributes;
 
-  return <AboutComponent title={aboutData.title} blocks={aboutData.blocks} />;
+  return <AboutComponent blocks={aboutData.blocks} />;
 };
 
 export default Page;

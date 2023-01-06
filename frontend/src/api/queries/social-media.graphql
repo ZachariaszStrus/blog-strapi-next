@@ -1,0 +1,13 @@
+query socialMedia {
+    socialMedia {
+        data {
+            attributes {
+                items {
+                    title
+                    url
+                    icon
+                }
+            }
+        }
+    }
+}
