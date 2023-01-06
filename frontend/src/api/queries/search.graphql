@@ -1,0 +1,14 @@
+query searchArticles($searchedWord: String!) {
+    search(query: $searchedWord){
+        articles {
+            data {
+                id
+                attributes {
+                    title
+                    slug
+                    description
+                }
+            }
+        }
+    }
+}

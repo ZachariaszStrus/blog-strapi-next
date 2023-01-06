@@ -14,3 +14,6 @@ export * from "./ContentWrapper";
 export * from "./ArticleDetailsComponent";
 export * from "./AboutComponent";
 export * from "./CommentsGiscus";
+export * from "./Modal";
+export * from "./Spinner";
+export * from "./Search";

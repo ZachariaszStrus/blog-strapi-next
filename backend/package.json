@@ -17,7 +17,8 @@
     "@strapi/strapi": "4.4.7",
     "better-sqlite3": "7.4.6",
     "pg": "^8.8.0",
-    "react-select": "^5.6.1"
+    "react-select": "^5.6.1",
+    "strapi-plugin-fuzzy-search": "^1.10.2"
   },
   "author": {
     "name": "A Strapi developer"
@@ -26,7 +27,7 @@
     "uuid": "bc73b7c7-73c5-443e-be71-f11de65331f0"
   },
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=14.19.1 <=16.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

@@ -4,6 +4,7 @@ import { Text } from "@ui";
 import { routes } from "@utils";
 import { FC } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
+import * as React from "react";
 import NextLink from "next/link";
 
 interface HomeProps {
