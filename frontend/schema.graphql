@@ -9,13 +9,12 @@ union AboutBlocksDynamicZone = ComponentSharedMedia | ComponentSharedRichText | 
 
 union ArticleBlocksDynamicZone = ComponentSharedCodeBlock | ComponentSharedMedia | ComponentSharedRichText | Error
 
-union GenericMorph = About | Article | Author | Category | ComponentSharedCodeBlock | ComponentSharedMedia | ComponentSharedRichText | ComponentSharedSeo | Global | Header | I18NLocale | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph = About | Article | Author | Category | ComponentSharedCodeBlock | ComponentSharedMedia | ComponentSharedRichText | ComponentSharedSeo | ComponentSharedSocialMediaItem | Global | Header | I18NLocale | SocialMedia | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
 
 type About {
     blocks: [AboutBlocksDynamicZone]
     createdAt: DateTime
     publishedAt: DateTime
-    title: String!
     updatedAt: DateTime
 }
 
@@ -128,6 +127,13 @@ type ComponentSharedSeo {
     shareImage: UploadFileEntityResponse
 }
 
+type ComponentSharedSocialMediaItem {
+    icon: ENUM_COMPONENTSHAREDSOCIALMEDIAITEM_ICON
+    id: ID!
+    title: String!
+    url: String!
+}
+
 type Error {
     code: String!
     message: String
@@ -208,6 +214,7 @@ type Mutation {
     deleteCategory(id: ID!): CategoryEntityResponse
     deleteGlobal: GlobalEntityResponse
     deleteHeader: HeaderEntityResponse
+    deleteSocialMedia: SocialMediaEntityResponse
     deleteUploadFile(id: ID!): UploadFileEntityResponse
     deleteUploadFolder(id: ID!): UploadFolderEntityResponse
     "Delete an existing role"
@@ -232,6 +239,7 @@ type Mutation {
     updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
     updateGlobal(data: GlobalInput!): GlobalEntityResponse
     updateHeader(data: HeaderInput!): HeaderEntityResponse
+    updateSocialMedia(data: SocialMediaInput!): SocialMediaEntityResponse
     updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
     updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
     "Update an existing role"
@@ -262,6 +270,7 @@ type Query {
     i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
     me: UsersPermissionsMe
     search(locale: String, query: String!): SearchResponse
+    socialMedia(publicationState: PublicationState = LIVE): SocialMediaEntityResponse
     uploadFile(id: ID): UploadFileEntityResponse
     uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
     uploadFolder(id: ID): UploadFolderEntityResponse
@@ -278,6 +287,22 @@ type ResponseCollectionMeta {
 
 type SearchResponse {
     articles: ArticleEntityResponseCollection
+}
+
+type SocialMedia {
+    createdAt: DateTime
+    items(filters: ComponentSharedSocialMediaItemFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): [ComponentSharedSocialMediaItem]!
+    publishedAt: DateTime
+    updatedAt: DateTime
+}
+
+type SocialMediaEntity {
+    attributes: SocialMedia
+    id: ID
+}
+
+type SocialMediaEntityResponse {
+    data: SocialMediaEntity
 }
 
 type UploadFile {
@@ -453,6 +478,11 @@ type UsersPermissionsUserRelationResponseCollection {
     data: [UsersPermissionsUserEntity!]!
 }
 
+enum ENUM_COMPONENTSHAREDSOCIALMEDIAITEM_ICON {
+    github
+    linkedin
+}
+
 enum PublicationState {
     LIVE
     PREVIEW
@@ -474,7 +504,6 @@ scalar Upload
 input AboutInput {
     blocks: [AboutBlocksDynamicZoneInput!]
     publishedAt: DateTime
-    title: String
 }
 
 input ArticleFiltersInput {
@@ -572,6 +601,22 @@ input ComponentSharedSeoInput {
     metaDescription: String
     metaTitle: String
     shareImage: ID
+}
+
+input ComponentSharedSocialMediaItemFiltersInput {
+    and: [ComponentSharedSocialMediaItemFiltersInput]
+    icon: StringFilterInput
+    not: ComponentSharedSocialMediaItemFiltersInput
+    or: [ComponentSharedSocialMediaItemFiltersInput]
+    title: StringFilterInput
+    url: StringFilterInput
+}
+
+input ComponentSharedSocialMediaItemInput {
+    icon: ENUM_COMPONENTSHAREDSOCIALMEDIAITEM_ICON
+    id: ID
+    title: String
+    url: String
 }
 
 input DateTimeFilterInput {
@@ -730,6 +775,11 @@ input PaginationArg {
     page: Int
     pageSize: Int
     start: Int
+}
+
+input SocialMediaInput {
+    items: [ComponentSharedSocialMediaItemInput]
+    publishedAt: DateTime
 }
 
 input StringFilterInput {
